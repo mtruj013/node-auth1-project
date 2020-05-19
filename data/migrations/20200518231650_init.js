@@ -16,7 +16,8 @@ exports.up = function (knex) {
                 .notNullable()
             tbl.integer('role')
                 .unsigned()
-                .references('roles.id')
+                .references('id')
+                .inTable('roles')
                 .onDelete('CASCADE')
                 .onUpdate('CASCADE');
         })
@@ -24,6 +25,6 @@ exports.up = function (knex) {
 
 exports.down = function (knex) {
     return knex.schema
-    .dropTableIfExists('roles')
     .dropTableIfExists('users')
+    .dropTableIfExists('roles')
 };
